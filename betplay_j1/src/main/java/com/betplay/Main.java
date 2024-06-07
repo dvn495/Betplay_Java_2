@@ -6,10 +6,10 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.betplay.model.Cmedical;
+import com.betplay.model.Cstaff;
 import com.betplay.model.Equipo;
 import com.betplay.model.Player;
-import com.betplay.model.Cstaff;
-import com.betplay.model.Cmedical;
 
 public class Main {
 
@@ -275,8 +275,19 @@ public class Main {
                         clearScreen();
                         Cmedical.registrarMedicos(sc, equipos, cmedics);
                     }
+                    
+                    case 7 ->{
+                        clearScreen();
+                        System.out.println("---REPORTES JUGADORES---");
+                        
+                        for (Player player : players) {
+                            System.out.println(player);
+                        }
+                        sc.nextLine();
+                        break;
+                    }
 
-                    case 7 -> {
+                    case 8 -> {
                         break;
                     }
 
