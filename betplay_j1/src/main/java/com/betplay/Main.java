@@ -42,7 +42,7 @@ public class Main {
             clearScreen();
 
             System.out.println("---LIGA BETPLAY---");
-            System.out.println("\n 1. REGISTRAR UN EQUIPO\n\n 2. REGISTRAR UNA FECHA\n\n 3. REPORTES DE EQUIPOS\n\n 4. REGISTRAR JUGADOR\n\n 5. REGISTRAR CUERPO TECNICO\n\n 6. REGISTRAR CUERPO MEDICO\n\n 7. DETENER LA EJECUCION\n");
+            System.out.println("\n 1. REGISTRAR UN EQUIPO\n\n 2. REGISTRAR UNA FECHA\n\n 3. REPORTES DE EQUIPOS\n\n 4. REGISTRAR JUGADOR\n\n 5. REGISTRAR CUERPO TECNICO\n\n 6. REGISTRAR CUERPO MEDICO\n\n 7.MOSTRAR JUGADORES REGISTRADOS \n\n 8. DETENER LA EJECUCION\n");
 
 
             try {
@@ -281,7 +281,7 @@ public class Main {
                         System.out.println("---REPORTES JUGADORES---");
                         
                         for (Player player : players) {
-                            System.out.println(player);
+                            System.out.println(player.getPlayerName());
                         }
                         sc.nextLine();
                         break;
