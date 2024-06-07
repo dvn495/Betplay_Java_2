@@ -123,7 +123,7 @@ public class Player extends Equipo{
         
         System.out.println("\n Ingrese las cartas rojas del jugador: \n-----------------------------------");
         int playerRedCards = Integer.parseInt(sc.nextLine());
-        System.out.println("\n Ingrese las cartas amarillas del jugador: \n-----------------------------------");
+        System.out.println("\n .Ingrese las cartas amarillas del jugador: \n-----------------------------------");
         int playerYellowCards = Integer.parseInt(sc.nextLine());
 
         Player myPlayer = new Player(teamIndex.getName(), playerName, playerDorsal, playerPosition, playerNacionality, playerDateEntry, playerGoals, playerRedCards, playerYellowCards);

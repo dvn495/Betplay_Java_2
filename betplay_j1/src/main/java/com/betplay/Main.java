@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 import com.betplay.model.Equipo;
 import com.betplay.model.Player;
+import com.betplay.model.Cstaff;
+import com.betplay.model.Cmedical;
 
 public class Main {
 
@@ -30,6 +32,8 @@ public class Main {
         ArrayList<Equipo> equipos = new ArrayList<Equipo>();
         ArrayList<Fecha> fechas = new ArrayList<Fecha>();
         ArrayList<Player> players = new ArrayList<Player>();
+        ArrayList<Cstaff> cstaffs = new ArrayList<Cstaff>();
+        ArrayList<Cmedical> cmedics = new ArrayList<Cmedical>();
 
         boolean isActive = true;
 
@@ -38,7 +42,7 @@ public class Main {
             clearScreen();
 
             System.out.println("---LIGA BETPLAY---");
-            System.out.println(" 1. REGISTRAR UN EQUIPO\n 2. REGISTRAR UNA FECHA\n 3. REPORTES\n 4. REGISTRAR JUGADOR\n 4. DETENER LA EJECUCION");
+            System.out.println("\n 1. REGISTRAR UN EQUIPO\n\n 2. REGISTRAR UNA FECHA\n\n 3. REPORTES DE EQUIPOS\n\n 4. REGISTRAR JUGADOR\n\n 5. REGISTRAR CUERPO TECNICO\n\n 6. REGISTRAR CUERPO MEDICO\n\n 7. DETENER LA EJECUCION\n");
 
 
             try {
@@ -127,19 +131,33 @@ public class Main {
                                 
                                 System.out.println("Presione cualquier tecla para continuar...");
                                 sc.nextLine();
-                                clearScreen();
+                                
+                                boolean isActiveVisit = true;
+                                int visitTeamGoals = 0;
+                                Equipo visitTeam = equipos.get(teamSearchLocal -1);
 
-                                System.out.println("\n  Equipo Visitante:");
-                                for (int i = 0; i < equipos.size(); i++ ){
-                                    System.out.println((i+1)+ ". "+ equipos.get(i).getName());
+                                while (isActiveVisit){
+                                    clearScreen();
+                                    System.out.println("--GESTOR PARTIDO--\n Escoga los equipos participantes (su numero de posicion en la lista)\n\n  Equipo Visitante:");
+                                    for (int i = 0; i < equipos.size(); i++ ){
+                                        System.out.println((i+1)+ ". "+ equipos.get(i).getName());
+                                    }
+
+                                    int teamSearchVisit = Integer.parseInt(sc.nextLine());
+
+                                    if (teamSearchVisit == teamSearchLocal) {
+                                        System.out.println("El equipo local no puede ser el mismo que el equipo visitante.\n Presione cualquier tecla para continuar...");
+                                        sc.nextLine();
+                                    } else  {
+                                        visitTeam = equipos.get(teamSearchVisit -1);
+                                        myfecha.setEquipo_visitante(visitTeam.getName());
+                                        System.out.println("\n Goles anotador por "+ myfecha.getEquipo_visitante());
+                                        visitTeamGoals = Integer.parseInt(sc.nextLine());
+                                        myfecha.setMarcador_equipo2(visitTeamGoals);
+                                        isActiveVisit = false;
+                                    }  
                                 }
 
-                                int teamSearchVisit = Integer.parseInt(sc.nextLine());
-                                Equipo visitTeam = equipos.get(teamSearchVisit -1);
-                                myfecha.setEquipo_visitante(visitTeam.getName());
-                                System.out.println("\n Goles anotador por "+ myfecha.getEquipo_visitante());
-                                int visitTeamGoals = Integer.parseInt(sc.nextLine());
-                                myfecha.setMarcador_equipo2(visitTeamGoals);
                                 fechas.add(myfecha);
                                 
                                 System.out.println("Presione cualquier tecla para continuar...");
@@ -246,7 +264,20 @@ public class Main {
                     case 4 -> {
                         clearScreen();
                         Player.registrarJugador(sc, equipos, players);
-                        sc.nextLine();
+                    }
+
+                    case 5 -> {
+                        clearScreen();
+                        Cstaff.registrarStaff(sc, equipos, cstaffs);
+                    }
+
+                    case 6 -> {
+                        clearScreen();
+                        Cmedical.registrarMedicos(sc, equipos, cmedics);
+                    }
+
+                    case 7 -> {
+                        break;
                     }
 
                     default -> {
